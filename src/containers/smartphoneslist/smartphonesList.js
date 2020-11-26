@@ -9,22 +9,43 @@ export default class SmartphonesList extends Component {
         super();
         this.state={
             loading: true,
-            data:null,
+            data:[],
             hasMore:true,
-            page: 0,
-            prevY: 0
+            page: 1
         }
+        this.loadingRef=null
 
-        this.lastElementRef = React.createRef()
+      this.getPhones();
+
+      this.setElementToBeObserved= (e)=>{
+          if(this.state.loading) return;
+        var options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 1.0
+          };
+            
+          this.observer = new IntersectionObserver(
+            (entries,observer)=>{
+               if(entries[0].isIntersecting) this.getPhones();
+            },
+            options
+          );
+         
+          console.log("this ref",this.loadingRef);
+
+          this.observer.observe(e);
+    }
     }
 
 
     async componentDidMount(){
-            const apiModelsUrl = "http://localhost:8000/model";
+     //   this.getPhones(1);
+/*             const apiModelsUrl = "http://localhost:8000/model";
             fetch(apiModelsUrl)
              .then(async (response)=>{
                 const data = await response.json();
-                console.log(data.message);
+                console.log(data);
                 
                 const newState = {...this.state};
                 newState.data = data.data;
@@ -34,34 +55,17 @@ export default class SmartphonesList extends Component {
             })
             .catch((e)=>{
                 console.log("Error 👉 ",e);
-            }) 
+            })  */
             
-/* 
-            var options = {
-                root: null,
-                rootMargin: "0px",
-                threshold: 1.0
-              };
-              
-              this.observer = new IntersectionObserver(
-                this.handleObserver.bind(this),
-                options
-              );
-              this.observer.observe(this.loadingRef); */
+
+            
     }
 
-    handleObserver(entities, observer) {
-        const y = entities[0].boundingClientRect.y;
-        if (this.state.prevY > y) {
-          const lastMobile = this.state.data[this.state.photos.length - 1];
-          const curPage = lastMobile._id;
-          this.getPhotos(curPage);
-          this.setState({ page: curPage });
-        }
-        this.setState({ prevY: y });
-      }
 
-    getPhones(page){
+
+
+    getPhones(){
+        let page = this.state.page;
         this.setState({loading:true})
         axios({
             method:"GET",
@@ -70,10 +74,10 @@ export default class SmartphonesList extends Component {
         })
         .then((res)=>{
             const newState = {...this.state};
-            newState.data.push(res.data.data);
+            newState.page = newState.page+1;
+            newState.data.push(...res.data.data);
             newState.hasMore = res.data.data.length > 0;
             this.setState(newState);
-            console.log(res.data.data);
             this.setState({ loading: false });
         })
         .catch((e)=>{
@@ -86,8 +90,10 @@ export default class SmartphonesList extends Component {
             return ( 
                 <>
                     {this.state.data.map((el,index)=>{
-                        if(index+1 == this.state.data.length)
-                        return <SmartphoneItem ref={this.lastElementRef}  key={el._id} smartphone={el} />
+                        if(index+1 === this.state.data.length){
+                            console.log("last one");
+                            return <SmartphoneItem setElementToBeObserverd={this.setElementToBeObserved} lastItem={true}  key={el._id} smartphone={el} />
+                        }
                         return <SmartphoneItem  key={el._id} smartphone={el} />
                     })}
                 </>)

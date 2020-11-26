@@ -14,7 +14,6 @@ import Sim from '@material-ui/icons/SimCard';
 import ReleasedDate from '@material-ui/icons/Event';
 import Sd from '@material-ui/icons/SdStorage';
 
-
 const getIcon = (type) => {
 
     switch (type) {
@@ -33,6 +32,7 @@ const getIcon = (type) => {
         default: return null;
     }
 }
+
 
 const specificationItem = (props) => {
     return (
