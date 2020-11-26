@@ -1,0 +1,12 @@
+.SmartphoneItem{
+    margin-top: 100px;
+    background-color: rgb(255, 255, 255);
+    box-shadow:0px 0px 3px #a4a4a463;
+    padding: 30px 0 !important;
+}
+
+.H1{
+    font-size: 1.9rem;
+    font-weight: bold;
+    margin-top: 20px;
+}

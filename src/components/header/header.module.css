@@ -1,0 +1,42 @@
+.Header{
+    color: white;
+    padding:50px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.NavBar{
+    display: inline;
+    list-style: none;
+}
+
+.NavBar ul{
+   align-self: flex-end;
+    position: relative;
+}
+.NavBar li{
+    cursor: pointer;
+    display: inline;
+    padding: 5px 30px;
+    position: relative;
+    margin: 0 10px;
+}
+
+.NavBar li:hover:after{
+    width: 100%;
+}
+
+.NavBar li:after{
+    content: " ";
+background-color: white;
+width: 0;
+height: 1px;
+position: absolute;
+right: 0;
+bottom: -5px;
+right: auto;
+left: 0;
+transition: all 0.5s ease;
+}
+

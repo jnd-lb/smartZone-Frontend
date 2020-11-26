@@ -1,9 +1,10 @@
 import './App.css';
+import Showroom from './containers/showroom/showroom';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div>
+      <Showroom className="showroom"/>
     </div>
   );
 }
