@@ -1,0 +1,20 @@
+.content{
+    margin-top: 15%;
+    margin-left:3%;
+    color: white;
+    position: absolute;
+}
+
+.bgimage {
+    width:100%;
+    height:500px;
+    background: url('../../assests/image/hero_image.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    
+  }
+  .h5 {
+    text-shadow:1.5px 1.5px rgb(32, 15, 92);
+  }
+ 
