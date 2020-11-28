@@ -4,6 +4,7 @@ import cx from "classnames";
 import classes from './smartphonesList.module.css';
 import axios from "axios";
 import Tools from "../../components/tools/tools"
+import InfiniteScrolling from "react-infinite-scroll-component";
 
 export default class SmartphonesList extends Component {
     constructor() {
@@ -50,7 +51,7 @@ export default class SmartphonesList extends Component {
     }
 
     shouldComponentUpdate(nextProps,nextState){
-        if(this.state == nextState){
+        if(this.state === nextState){
             return false;
         }
         console.log("rerendering the componenets");
@@ -118,21 +119,17 @@ export default class SmartphonesList extends Component {
         const RenderSmartphoneItem = () => {
             console.log("RenderSmartphoneItem");
             return (
-                <>
+                <InfiniteScrolling dataLength={this.state.data.length} hasMore={true} next={()=>this.getPhones()}>
                     {this.state.data.map((el, index) => {
-                        if (index + 1 === this.state.data.length) {
-                            console.log("last one");
-                            return <SmartphoneItem setElementToBeObserverd={this.setElementToBeObserved} lastItem={true} key={el._id} smartphone={el} />
-                        }
                         return <SmartphoneItem key={el._id} smartphone={el} />
                     })}
-                </>
+                </InfiniteScrolling>
             )
         }
         return (
             <div className={cx(classes.MainContainer, "container")}>
                 <Tools change={this.changeBrand} value={this.state.selectedBrand} />
-                {(this.state.loading) ? "loading..." : <RenderSmartphoneItem />}
+                 <RenderSmartphoneItem />
             </div>
         )
     }
