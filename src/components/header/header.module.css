@@ -1,11 +1,15 @@
 .Header{
     color: white;
-    padding:50px;
+    padding:40px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     flex-direction: row;
 }
 
+.Header img{
+    height: 4rem;
+}
 .NavBar{
     display: inline;
     list-style: none;
@@ -14,13 +18,15 @@
 .NavBar ul{
    align-self: flex-end;
     position: relative;
+    margin: 0 important;
 }
 .NavBar li{
     cursor: pointer;
     display: inline;
     padding: 5px 30px;
     position: relative;
-    margin: 0 10px;
+    margin: 50px 10px;
+    transform: translateY(50%);
 }
 
 .NavBar li:hover:after{
@@ -39,4 +45,5 @@ right: auto;
 left: 0;
 transition: all 0.5s ease;
 }
+
 

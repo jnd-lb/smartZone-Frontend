@@ -9,7 +9,7 @@ export default class showroom extends Component {
         return (
             <>
             <Header/>  
-            <br/>          
+            <br/>   
             <SmartphonesList className={cx(Classes.MainContainer)}/>
             </>
         )

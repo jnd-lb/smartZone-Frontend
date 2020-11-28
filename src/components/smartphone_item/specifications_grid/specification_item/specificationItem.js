@@ -15,7 +15,6 @@ import ReleasedDate from '@material-ui/icons/Event';
 import Sd from '@material-ui/icons/SdStorage';
 
 const getIcon = (type) => {
-
     switch (type) {
         case "batteryCapacity": return <BatteryCapacity />;
         case "ram": return <Ram />;

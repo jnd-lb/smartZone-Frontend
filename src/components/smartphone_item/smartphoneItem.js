@@ -5,7 +5,7 @@ import Classes from "./smartphoneItem.module.css";
 
 function smartphoneItem(props) {
     return (
-        <div ref={(props.lastItem)?(e)=>{props.setElementToBeObserverd(e)}:null }
+        <div ref={(props.lastItem)?(e)=>{console.log("From last item rendered",e); props.setElementToBeObserverd(e)}:null }
          className={cx("container",Classes.SmartphoneItem)}>
             <div className={cx("row")}>
                 <div className={cx("text-center","flex-column","col-md-3", "col-sm-12", "d-flex", "justify-content-center", "align-items-center")}>
