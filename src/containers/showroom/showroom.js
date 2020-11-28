@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from "../../components/header/header";
-import SmartphonesList from "../smartphoneslist/smartphonesList";
+import SmartphonesList from "../smartphones_list/smartphonesList";
 import cx from "classnames";
 import Classes from "./showroom.module.css"
 
