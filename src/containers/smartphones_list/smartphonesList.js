@@ -11,83 +11,66 @@ export default class SmartphonesList extends Component {
     constructor() {
         super();
         this.state = {
-            loading: true,
             data: [],
             hasMore: true,
             page: 1,
-            selectedBrand:"",
-            settedPrice:-1
-        }
-        
-        this.getPhones();
-        
-        this.changeBrand= (event)=>{
-            this.setState({ selectedBrand: event.target.value });
-        }
-        
-    
-        this.getFilteredDate= ()=>{
-            this.setState({ page: 1 });
-            this.getPhones(this.state.selectedBrand, this.state.settedPrice);
-        }
-        
-        this.setElementToBeObserved = (e) => {
-            if (this.state.loading) return;
-            var options = {
-                root: null,
-                rootMargin: "0px",
-                threshold: 1.0
-            };
-
-            this.observer = new IntersectionObserver(
-                (entries, observer) => {
-                    if (entries[0].isIntersecting) this.getPhones();
-                },
-                options
-            );
-            console.log("this ref", e);
-            this.observer.disconnect();
-            this.observer.observe(e);
+            selectedBrand: "",
+            settedPrice: -1,
+            willFilterData: false,
+            version:"old"
         }
     }
 
-    shouldComponentUpdate(nextProps,nextState){
-        if(this.state === nextState){
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state === nextState) {
             return false;
         }
         console.log("rerendering the componenets");
         return true;
     }
 
-    async componentDidMount() {
-        //   this.getPhones(1);
-        /*             const apiModelsUrl = "http://localhost:8000/model";
-                    fetch(apiModelsUrl)
-                     .then(async (response)=>{
-                        const data = await response.json();
-                        console.log(data);
-                        
-                        const newState = {...this.state};
-                        newState.data = data.data;
-                        newState.loading =false;
+     toggleFilter =async (e) => {
+        console.log("the current state Before setting the state",this.state);
+        const newState = { ...this.state };
+        newState.page = 1;
+        newState.version = "new";
+        newState.willFilterData = e.target.checked;
+        newState.data=[];
+
+        await this.setState(newState);
         
-                        this.setState(newState);
-                    })
-                    .catch((e)=>{
-                        console.log("Error 👉 ",e);
-                    })  */
+        this.getPhones();
+    }
+    async componentDidMount() {
+        
+        this.getPhones();
+
+        this.changeBrand = async (event) => {
+            this.setState({ selectedBrand: event.target.value });
+            console.log("Change Brand",this.state.willFilterData);
+            if(this.state.willFilterData)  {
+                await this.setState({data:[],page:1});
+                this.getPhones();
+            }
+        }
+
     }
 
-    getPhones(brand = "", pricemax = -1) {
+    getPhones() {
+        if (!this.state.hasMore) return;
         let page = this.state.page;
-        this.setState({ loading: true });
 
-       let params = {
+        let params = {
             offset: (page - 1) * 10,
         }
-        if (brand !== "") params.brand = brand;
-        if (pricemax > -1) params.pricemax = pricemax;
 
+        if (this.state.willFilterData) {
+            console.log("selected brand:", this.state.selectedBrand);
+            if (this.state.selectedBrand !== "") params.brand = this.state.selectedBrand;
+            if (this.state.settedPrice > -1) params.pricemax = this.state.settedPrice;
+        }
+
+        console.log("params in smartPhones:", params);
         axios({
             method: "GET",
             url: "http://localhost:8000/model",
@@ -96,16 +79,8 @@ export default class SmartphonesList extends Component {
             }
         })
             .then((res) => {
-                /* const newState = {...this.state};
-                   newState.page = newState.page+1;
-                   newState.data.push(...res.data.data);
-                   newState.hasMore = res.data.data.length > 0;
-                   this.setState(newState);
-                   this.setState({ loading: false }); */
                 let data = res.data.data;
-
                 this.setState({
-                    loading: false,
                     hasMore: data.length > 0,
                     page: this.state.page + 1,
                     data: [...this.state.data, ...data]
@@ -118,20 +93,22 @@ export default class SmartphonesList extends Component {
 
     render() {
         const RenderSmartphoneItem = () => {
-            console.log("RenderSmartphoneItem");
             return (
-                <InfiniteScrolling loader={<Loading/>} dataLength={this.state.data.length} hasMore={true} next={()=>this.getPhones()}>
-                {this.state.data.map((el, index) => {
-                    return <SmartphoneItem key={el._id} smartphone={el} />
-                })}
-            </InfiniteScrolling>
+                <InfiniteScrolling loader={<Loading />} dataLength={this.state.data.length} hasMore={true} next={() => this.getPhones("infinit scrolling")}>
+                    {this.state.data.map((el, index) => {
+                        return <SmartphoneItem key={el._id} smartphone={el} />
+                    })}
+                </InfiniteScrolling>
             )
         }
         return (
             <div className={cx(classes.MainContainer, "container")}>
-                <Tools change={this.changeBrand} value={this.state.selectedBrand} />
-                
-                 <RenderSmartphoneItem />
+                <Tools
+                    change={this.changeBrand}
+                    toggleFilter={this.toggleFilter}
+                    value={this.state.selectedBrand}
+                    isChecked={this.state.willFilterData} />
+                <RenderSmartphoneItem />
             </div>
         )
     }

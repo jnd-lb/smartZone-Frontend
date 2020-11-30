@@ -5,8 +5,7 @@ import Classes from "./smartphoneItem.module.css";
 
 function smartphoneItem(props) {
     return (
-        <div key={props.key} ref={(props.lastItem)?(e)=>{props.setElementToBeObserverd(e)}:null }
-         className={cx("container",Classes.SmartphoneItem)}>
+        <div key={props.key} className={cx("container",Classes.SmartphoneItem)}>
             <div className={cx("row")}>
                 <div className={cx("text-center","flex-column","col-md-3", "col-sm-12", "d-flex", "justify-content-center", "align-items-center")}>
                     <img src={props.smartphone.imgUrl} className={cx("img-fluid","H1")} />

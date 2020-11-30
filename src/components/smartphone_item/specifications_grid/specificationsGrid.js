@@ -3,7 +3,6 @@ import cx from 'classnames'
 import SpecificationItem from "./specification_item/specificationItem"
 
 function specificationsGrid(props) {
-    console.log("specificationsGrid",props)
     return (
         <>
             <div className={cx("row")}>
@@ -42,7 +41,7 @@ function specificationsGrid(props) {
             </div>
             <div className={cx("row")}>
                 <div className={cx("col-md-4", "col-sm-12")} >
-                    <SpecificationItem specificationTitle="Brand" specificationDetails={(props.smartphone.brand)?props.smartphone.brand[0].name:""} type="brand" />
+                    <SpecificationItem specificationTitle="Brand" specificationDetails={props.smartphone.brand} type="brand" />
                 </div>
                 <div className={cx("col-md-4", "col-sm-12")} >
                     <SpecificationItem specificationTitle="Price" specificationDetails={props.smartphone.price} type="price" />
