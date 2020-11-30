@@ -2,7 +2,7 @@ import React from 'react'
 
 function brandDropDown(props) {
     return (
-        <select onChange={props.change} value={props.value}>
+        <select onChange={props.changeBrand} value={props.selectedBrand}>
             <option value="">Select A Brand</option>
             <option value="Apple">Apple</option>
             <option value="Samsung">Samsung</option>

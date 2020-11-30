@@ -15,9 +15,8 @@ export default class SmartphonesList extends Component {
             hasMore: true,
             page: 1,
             selectedBrand: "",
-            settedPrice: -1,
-            willFilterData: false,
-            version:"old"
+            selectedPrice: -1,
+            willFilterData: false
         }
     }
 
@@ -29,35 +28,58 @@ export default class SmartphonesList extends Component {
         return true;
     }
 
-     toggleFilter =async (e) => {
-        console.log("the current state Before setting the state",this.state);
+    toggleFilter = async (e) => {
+        console.log("the current state Before setting the state", this.state);
         const newState = { ...this.state };
         newState.page = 1;
-        newState.version = "new";
+        newState.hasMore = true;
         newState.willFilterData = e.target.checked;
-        newState.data=[];
+        newState.data = [];
 
         await this.setState(newState);
-        
+
         this.getPhones();
     }
+
     async componentDidMount() {
-        
         this.getPhones();
 
         this.changeBrand = async (event) => {
-            this.setState({ selectedBrand: event.target.value });
-            console.log("Change Brand",this.state.willFilterData);
-            if(this.state.willFilterData)  {
-                await this.setState({data:[],page:1});
+            const newState = {...this.state};
+            newState.selectedBrand = event.target.value;
+            newState.hasMore = true;
+            await this.setState(newState);
+            console.log("Change Brand", this.state.willFilterData);
+            if (this.state.willFilterData) {
+                await this.setState({ data: [], page: 1 });
                 this.getPhones();
             }
         }
 
     }
 
+    priceChange = async (e) => {
+        console.log("Pricechange", e.target.value);
+        const newState = { ...this.state }
+        newState.selectedPrice = e.target.value;
+        await this.setState(newState);
+    }
+
+    //apply the changes onblur
+    applyPriceChange = async () => {
+        if (!this.state.willFilterData) return;
+
+        const newState = { ...this.state }
+        newState.data = [];
+        newState.page = 1;
+        newState.hasMore = true;
+        await this.setState(newState);
+        this.getPhones();
+
+    }
+
     getPhones() {
-        if (!this.state.hasMore) return;
+        if (!this.state.hasMore) {console.log("Do not has more"); return;}
         let page = this.state.page;
 
         let params = {
@@ -67,7 +89,7 @@ export default class SmartphonesList extends Component {
         if (this.state.willFilterData) {
             console.log("selected brand:", this.state.selectedBrand);
             if (this.state.selectedBrand !== "") params.brand = this.state.selectedBrand;
-            if (this.state.settedPrice > -1) params.pricemax = this.state.settedPrice;
+            if (this.state.selectedPrice > -1) params.pricemax = this.state.selectedPrice;
         }
 
         console.log("params in smartPhones:", params);
@@ -104,9 +126,12 @@ export default class SmartphonesList extends Component {
         return (
             <div className={cx(classes.MainContainer, "container")}>
                 <Tools
-                    change={this.changeBrand}
+                    changeBrand={this.changeBrand}
+                    selectedBrand={this.state.selectedBrand}
                     toggleFilter={this.toggleFilter}
-                    value={this.state.selectedBrand}
+                    selectedPrice={this.state.selectedPrice}
+                    applyPriceChange={this.applyPriceChange}
+                    priceChange={this.priceChange}
                     isChecked={this.state.willFilterData} />
                 <RenderSmartphoneItem />
             </div>
