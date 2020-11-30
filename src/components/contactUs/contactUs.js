@@ -7,23 +7,15 @@ function contactUs (props) {
         <div className={cx(Classes.formWrapper)}>
             <form id="form" method="post" name="emailform" action="email.php">
                   <h3 className={cx(Classes.formTitle)}>Contact Us</h3>
-                  <p className={cx(Classes.formUndertitle)}>Fields marked "*" are required.</p>
-                  <div className={cx(Classes.formInputGrid)}>
-                    <div>
-                      <h5 className={cx(Classes.formText)}>Username*</h5>
-                      <div className={cx(Classes.formInputWrapper, Classes.flexboxLeft)}>
-                        {/* <i className={cx(Classes.uil, uilUser)}></i> */}
-                        <input className={cx(Classes.formInput)} id="uname" name="uname" type="text" placeholder="Username" aria-label="" required/>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 className={cx(Classes.formText)}>Password*</h5>
-                      <div className={cx(Classes.formInputWrapper, Classes.flexboxLeft)}>
-                        {/* <i className={cx(Classes.uil, uil-asterisk)}></i> */}
-                        <input className={cx(Classes.formInput)} id="pword" name="pword" type="password" placeholder="Password" aria-label="" required/>
-                      </div>
-                    </div>
-                  </div>
+                  <h6 className={cx(Classes.formUndertitle)}>Couldn't find what you are looking for?<br className={cx(Classes.break)} ></br> Contact us through this form. We are looking forward to hearing from you.</h6>
+                  <p className={cx(Classes.required)}>Fields marked "*" are required.</p>
+                <div className={cx(Classes.formInputMax)}>
+                  <h5 className={cx(Classes.formText)}>Full Name*</h5>
+                  <div className={cx(Classes.formInputWrapper, Classes.flexboxLeft)}>
+                    {/* <i className={cx(Classes.uil, Clasess.uil-at)}></i> */}
+                    <input className={cx(Classes.formInput)} id="name" name="name" type="text" placeholder="Full Name" aria-label="" required/>
+                </div>
+                </div>
                 <div className={cx(Classes.formInputMax)}>
                   <h5 className={cx(Classes.formText)}>Email*</h5>
                   <div className={cx(Classes.formInputWrapper, Classes.flexboxLeft)}>

@@ -1,3 +1,10 @@
+:root {
+  --white: #ffffff;
+  /* Gradients */
+  --pace: linear-gradient(90deg, rgba(0, 105, 217, 1) 0%,  rgba(1,186,239,1) 50%, rgba(27, 190, 112,1) 100%);
+  /* Sizes */
+  --button-small: 1rem;
+}
 .content{
     margin-top: 15%;
     margin-left:3%;
@@ -12,9 +19,60 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
+    padding: 50px 0;
     
   }
   .h5 {
     text-shadow:1.5px 1.5px rgb(32, 15, 92);
   }
+/* Button */
+.buttonWrapper {
+  margin: 2em 0 1em 0;
+}
+.button, .btnSecondary {
+  margin: 0;
+  width: 70%;
+  position: relative;
+  padding: 1.2em 1.8em;
+  letter-spacing: .1em;
+  text-align: center;
+  color: var(--white);
+  font-size: var(--button-small);
+  background: var(--pace);
+  background-size: 500%;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transform: scaleX(1);
+  transition: transform .3s cubic-bezier(.175,.885,.32,1.275), filter .3s cubic-bezier(.175,.885,.32,1.275), bottom .3s cubic-bezier(.175,.885,.32,1.275), background-position 3s cubic-bezier(.455,.03,.515,.955), -webkit-transform .3s cubic-bezier(.175,.885,.32,1.275), -webkit-filter .3s cubic-bezier(.175,.885,.32,1.275);
+}
+.button {
+  transition: transform .3s cubic-bezier(.175,.885,.32,1.275), bottom .3s cubic-bezier(.175,.885,.32,1.275), background-position 3s cubic-bezier(.455,.03,.515,.955), -webkit-transform .3s cubic-bezier(.175,.885,.32,1.275);
+}
+.button, .button .btnSecondary {
+  background-position: 0 50%;
+  bottom: 0;
+}
+.button .btnSecondary {
+  left: 0;
+  width: 100%;
+  position: absolute;
+  filter: blur(1rem);
+  opacity: .8;
+  z-index: -1;
+  transform: scale3d(.9, .9, 1);
+  transition: transform .3s cubic-bezier(.175,.885,.32,1.275), filter .3s cubic-bezier(.175,.885,.32,1.275), bottom .3s cubic-bezier(.175,.885,.32,1.275), background-position 3s cubic-bezier(.455,.03,.515,.955), -webkit-transform .3s cubic-bezier(.175,.885,.32,1.275), -webkit-filter .3s cubic-bezier(.175,.885,.32,1.275);
+}
+.button:focus, .button:hover {
+  transform: scale3d(1.1, 1.1, 1);
+  background-position: 100% 50%;
+  outline: none;
+  bottom: 2px;
+}
+.button:focus .btnSecondary, .button:hover .btnSecondary {
+  background-position: 100% 50%;
+  filter: blur(1.6rem);
+  bottom: -5px;
+  text-decoration: none;
+}
  
