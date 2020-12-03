@@ -1,0 +1,92 @@
+.a {
+    color: #6195FF;
+    text-decoration: none;
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+}
+.a:hover, .a:focus {
+    text-decoration: none;
+    outline: none;
+    opacity: 0.8;
+    color: #6195FF;
+}
+.footer {
+    position: relative;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.footerFollow {
+    text-align: center;
+    
+}
+.footerFollow li {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 13px;
+}
+
+.footerFollow li .a {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: rgba(0, 105, 217, 1);
+  color:#FFF;
+
+}
+
+.footerCopyright p {
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-left: 3%;
+  color:#343a40;;
+}
+
+.Header{
+    color: white;
+    padding:2%;
+    display: flex;
+    justify-content: center;
+    
+}
+.NavBarA{
+    color: white !important;
+    text-decoration: none !important;
+}
+.NavBar{
+    display: inline;
+    list-style: none;
+}
+
+.NavBar ul{
+   align-self: flex-end;
+    position: relative;
+}
+.NavBar li{
+    cursor: pointer;
+    display: inline;
+    padding: 5px 30px;
+    position: relative;
+    margin: 0 10px;
+}
+
+.NavBar li:hover:after{
+    width: 100%;
+}
+
+.NavBar li:after{
+    content: " ";
+background-color: white;
+width: 0;
+height: 1px;
+position: absolute;
+right: 0;
+bottom: -5px;
+right: auto;
+left: 0;
+transition: all 0.5s ease;
+}

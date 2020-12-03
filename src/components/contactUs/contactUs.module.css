@@ -57,6 +57,9 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 5em;
     background-color: var(--primary);
 }
+::placeholder{
+    font-size: smaller;
+}
 /* Global classes */
 .space {
     min-height: 25vh;
