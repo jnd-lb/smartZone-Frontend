@@ -3,7 +3,7 @@ import cx from "classnames";
 import Classes from "./contactUs.module.css";
 function contactUs (props) {
     return (  
-      <section className={cx("container", Classes.container)}> 
+      <section className={cx("container", "rounded-bottom", Classes.container)}> 
         <div className={cx(Classes.formWrapper)}>
             <form id="form" method="post" name="emailform" action="email.php">
                   <h3 className={cx(Classes.formTitle)}>Contact Us</h3>

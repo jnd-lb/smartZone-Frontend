@@ -4,7 +4,7 @@
     --primary: rgb(161, 166, 252);
     --accent1: rgba(251,161,229,1);
     --accent2: rgba(241,196,161,1);
-    --white: #ffffff;
+    --white: ##01BAEF;
     --black: #000000;
     /* Gray Colors */
     --bc-gray: #ede8e4;
@@ -29,10 +29,16 @@ html, body {
     background-color: var(--bc);
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
-    color:#01BAEF !important; 
+    color: #008AE2 !important; 
 }
 .container{
-    background-color: #e6e6e6;
+    /* background-color: #e6e6e6; */
+    background: url('../../assests/image/New Project(5).png');
+    width:100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-color: white;
 }
 textarea {
     min-height: 8em;
@@ -112,8 +118,8 @@ textarea::-webkit-scrollbar-thumb {
     width: 100%;
 }
 .formTitle {
-    margin: 1em 0 0 0;
-    font-size: var(--heading);
+    margin: 2em 0 0 0;
+    font-size: 40px;
     font-weight: 800;
 }
 .formUndertitle {
@@ -182,7 +188,7 @@ textarea::-webkit-scrollbar-thumb {
     font-size: 1.22rem;
     border-radius: 2em;
     box-shadow:0px 0px 3px #a4a4a463;
-    background-color: white;
+    background-color: #f8fbfa;
     border: 2px solid var(--bc-gray);
     transition: border .15s ease-in-out;
 }
@@ -198,7 +204,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 /* Button */
 .buttonWrapper {
-    margin: 2em 0 1em 0;
+    margin: 1em 0 1em 65%;
 }
 .button, .btnSecondary {
     margin: 0;
@@ -249,19 +255,19 @@ textarea::-webkit-scrollbar-thumb {
 @media only screen and (max-width: 1660px) {
     :root {
         /* Sizes */
-        --heading: 3rem;
+        --heading: 2rem;
     }
 }
 @media only screen and (max-width: 1456px) {
     :root {
         /* Sizes */
-        --heading: 4rem;
+        --heading: 3rem;
     }
 }
 @media only screen and (max-width: 1024px) {
     :root {
         /* Sizes */
-        --heading: 2.4rem;
+        --heading: 1rem;
     }
     /* Form */
     #form {
@@ -271,7 +277,7 @@ textarea::-webkit-scrollbar-thumb {
 @media only screen and (max-width: 756px) {
     :root {
         /* Sizes */
-        --heading: 2.2rem;
+        --heading: 1rem;
     }
     /* Form */
     #form {
