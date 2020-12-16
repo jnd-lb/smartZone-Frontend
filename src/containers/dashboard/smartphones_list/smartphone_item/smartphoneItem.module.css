@@ -1,0 +1,25 @@
+.SmartphoneItem{
+    margin-top: 100px;
+    background-color: rgb(255, 255, 255);
+    box-shadow:0px 0px 3px #a4a4a463;
+    padding: 30px 0 !important;
+    transition: transform 3s,box-shadow 0.6s ease;
+}
+
+.H1{
+   margin-top:10px ;
+   font-size: 1.5rem;
+   font-weight: bold;
+   color: #4a4a4a;
+}
+
+.Editable{
+    position: fixed;
+    transform: translateY(-50%);
+    margin: 0;
+    margin-right: 0px;
+    margin-left: 0px;
+    top: 50vh;
+    z-index: 2;   
+    box-shadow: 0px 0px 19px 1000px rgba(0, 0, 0, 0.85);  
+}

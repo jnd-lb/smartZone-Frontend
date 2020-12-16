@@ -1,0 +1,21 @@
+.P{
+    margin:0;
+    color: rgb(75, 75, 75);
+    font-size: 14px;
+}
+
+.H4{
+    font-weight: 700;
+    font-size: 17px;
+    color: rgb(36, 36, 36);
+    margin:0;
+
+}
+
+.Textarea{
+    resize: none;
+    transition: all 1s ease;
+}
+
+.Textarea:not(:read-only){
+    background-color: rgb(238, 238, 238);}

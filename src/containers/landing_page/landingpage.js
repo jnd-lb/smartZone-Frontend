@@ -5,7 +5,7 @@ export default class landingpage extends Component {
     render() {
         return (
             <div className={Classes.Label}>
-                
+                ddddddd
             </div>
         )
     }

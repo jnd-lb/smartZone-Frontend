@@ -1,0 +1,9 @@
+.slider{
+    margin:0 15px;
+}
+
+.slider::before{
+    content: "Filter By Price";
+    position: absolute;
+    top: -5px;
+}
